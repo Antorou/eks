@@ -11,18 +11,20 @@ resource "helm_release" "kube_prometheus_stack" {
   version    = "58.7.2"
   namespace  = kubernetes_namespace.monitoring.metadata[0].name
 
-  # Persist Grafana dashboards and Prometheus data across pod restarts
-  set {
-    name  = "grafana.persistence.enabled"
-    value = "true"
-  }
+  timeout         = 600
+  wait            = true
+  cleanup_on_fail = true
 
   set {
     name  = "grafana.adminPassword"
     value = var.grafana_admin_password
   }
 
-  # Reduces resource usage — acceptable for a lab single-node cluster
+  set {
+    name  = "grafana.persistence.enabled"
+    value = "false"
+  }
+
   set {
     name  = "prometheus.prometheusSpec.retention"
     value = "24h"
