@@ -9,6 +9,8 @@
 *.tfstate.backup
 *.tfvars
 !*.tfvars.example
+*.hcf
+!*.hcf.example
 .terraform.lock.hcl
 
 
