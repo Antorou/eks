@@ -69,12 +69,6 @@ variable "db_username" {
   default     = "appuser"
 }
 
-variable "db_password" {
-  description = "Master password for RDS. Inject via TF_VAR_db_password — never hardcode."
-  type        = string
-  sensitive   = true
-}
-
 variable "db_instance_class" {
   description = "RDS instance class."
   type        = string

@@ -1,6 +1,11 @@
 terraform {
   required_version = ">= 1.7"
 
+  # Empty block = partial configuration.
+  # Real values come from: terraform init -backend-config=backend.hcf
+  # Run bootstrap.sh once first to create the S3 bucket and DynamoDB table.
+  backend "s3" {}
+
   required_providers {
     aws = {
       source  = "hashicorp/aws"
